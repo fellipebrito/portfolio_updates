@@ -37,9 +37,9 @@ def notify(title, text):
               """.format(text, title))
 
 smart_diff_today = round(portfolio_daily_diff(smart), 2)
-if (smart_diff_today < 0):
+if (smart_diff_today < -0.5 or smart_diff_today > 0.3):
     notify('Portfolio Update', "Today Diff: %s" % smart_diff_today)
 
 general_diff_today = round(portfolio_daily_diff(general), 2)
-if (general_diff_today < 0.5 or general_diff_today > 0.2):
+if (general_diff_today < -0.5 or general_diff_today > 0.2):
     notify('Portfolio Update', "Today Diff: %s" % general_diff_today)
