@@ -2,14 +2,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas_datareader.data as web
-from datetime import datetime, date, timedelta
+import datetime
 import os
 
 smart = ['SHV', 'NEAR']
 general = ['VTI', 'VTV', 'VOE', 'VBR', 'VEA', 'VWO', 'VTIP', 'AGG', 'MUB', 'BNDX']
 
-end = datetime.now()
-start = datetime.today() - timedelta(1)
+today = datetime.date.today()
+yesterday = today - datetime.timedelta(days = 1)
 
 def percentage(part, whole):
     return 100 * float(part)/float(whole)
@@ -22,7 +22,7 @@ def portfolio_daily_diff(portfolio):
     diff = 0
     for fund in portfolio:
         print("Reading " + fund)
-        sheet = web.DataReader(fund, 'yahoo', start, end)
+        sheet = web.DataReader(fund, 'yahoo', yesterday, today)
 
         current_diff = daily_difference(sheet)
         print(current_diff)
